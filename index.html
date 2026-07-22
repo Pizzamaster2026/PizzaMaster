@@ -1,49 +1,30 @@
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>🍕 PizzaMaster</title>
-
-<meta name="theme-color" content="#121212">
+<title>PizzaMaster</title>
 
 <link rel="manifest" href="manifest.json">
 <link rel="stylesheet" href="style.css">
+
+<meta name="theme-color" content="#1c1c1c">
 
 </head>
 
 <body>
 
-<div class="app">
-
-<header class="header">
-
-<img
-src="assets/logo.png"
-class="logo"
-alt="PizzaMaster">
+<div class="container">
 
 <h1>🍕 PizzaMaster</h1>
 
-<p class="subtitle">
-Der intelligente Pizzateig-Rechner
-</p>
+<div class="box">
 
-</header>
+<h2>Einstellungen</h2>
 
-<section class="karte">
-
-<h2>⚙️ Einstellungen</h2>
-
-<label for="pizzen">
-
-🍕 Anzahl Pizzen
-
-</label>
-
+<label for="pizzen">🍕 Anzahl Pizzen</label>
 <input
 id="pizzen"
 type="number"
@@ -51,12 +32,7 @@ min="1"
 max="20"
 value="4">
 
-<label for="gewicht">
-
-⚖️ Gewicht pro Pizza (g)
-
-</label>
-
+<label for="gewicht">⚖️ Gewicht pro Pizza (g)</label>
 <input
 id="gewicht"
 type="number"
@@ -64,7 +40,7 @@ min="150"
 max="400"
 value="280">
 
-<label>
+<label for="hydration">
 
 💧 Hydration
 
@@ -78,10 +54,10 @@ value="280">
 id="hydration"
 type="range"
 min="50"
-max="85"
+max="80"
 value="65">
 
-<label>
+<label for="salz">
 
 🧂 Salz %
 
@@ -90,10 +66,10 @@ value="65">
 <input
 id="salz"
 type="number"
-value="3.0"
-step="0.1">
+step="0.1"
+value="3.0">
 
-<label>
+<label for="hefeart">
 
 🍺 Hefe
 
@@ -102,82 +78,47 @@ step="0.1">
 <select id="hefeart">
 
 <option value="frisch">
-Frischhefe
-</option>
+  <div class="box">
 
-<option value="trocken">
-Trockenhefe
-</option>
+<h2>📊 Zutaten</h2>
 
-</select>
-
-<label>
-
-⏱ Gare
-
-</label>
-
-<select id="gare">
-
-<option value="4">
-4 Stunden
-</option>
-
-<option value="8">
-8 Stunden
-</option>
-
-<option value="12">
-12 Stunden
-</option>
-
-<option
-value="24"
-<section class="karte">
-
-<h2>📊 Dein Rezept</h2>
-
-<div class="zeile">
+<div class="row">
 <span>🌾 Mehl</span>
 <strong id="mehl">668 g</strong>
 </div>
 
-<div class="zeile">
+<div class="row">
 <span>💧 Wasser</span>
-<strong id="wasser">436 ml</strong>
+<strong id="wasser">436 g</strong>
 </div>
 
-<div class="zeile">
+<div class="row">
 <span>🧂 Salz</span>
 <strong id="salzErgebnis">20 g</strong>
 </div>
 
-<div class="zeile">
+<div class="row">
 <span id="hefeTitel">🍺 Frischhefe</span>
 <strong id="hefe">2.00 g</strong>
 </div>
 
-<div class="zeile">
-<span>⚖️ Gesamtteig</span>
+<div class="row total">
+<span>⚖️ Gesamt</span>
 <strong id="gesamt">1126 g</strong>
 </div>
 
-</section>
+</div>
 
-<section class="karte">
+<div class="box">
 
-<h2>💾 Meine Rezepte</h2>
-
-<label for="rezeptName">
-Name des Rezepts
-</label>
+<h2>💾 Rezepte</h2>
 
 <input
 id="rezeptName"
 type="text"
-placeholder="z. B. Neapolitanisch">
+placeholder="Rezeptname">
 
-<div class="buttongruppe">
+<div class="buttonRow">
 
 <button id="speichernBtn">
 💾 Speichern
@@ -193,12 +134,6 @@ placeholder="z. B. Neapolitanisch">
 
 </div>
 
-<label for="rezeptListe">
-
-Gespeicherte Rezepte
-
-</label>
-
 <select id="rezeptListe">
 
 <option value="">
@@ -207,34 +142,29 @@ Rezept auswählen
 
 </select>
 
-</section>
+</div>
 
-<section class="karte">
+<div class="box">
 
-<h2>💡 Tipp</h2>
+<h2>💡 Hinweis</h2>
 
 <p id="tipp">
-
 65 % Hydration ist ideal für einen klassischen Pizzateig.
-
 </p>
 
-</section>
-  <footer>
+</div>
+  <div class="buttonRow bottomButtons">
 
-<p>🍕 PizzaMaster V1.0</p>
+<button id="resetBtn" type="button">
+🔄 Standard
+</button>
 
-<p class="footerText">
-Entwickelt mit ❤️ für perfekte Pizza
-</p>
-
-</footer>
+</div>
 
 </div>
 
 <script src="script.js"></script>
 
 </body>
-
 </html>
   
