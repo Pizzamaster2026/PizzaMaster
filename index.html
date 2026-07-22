@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PizzaMaster</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+<h1>🍕 PizzaMaster</h1>
+<p>Der intelligente Pizzateig-Rechner</p>
+</header>
+
+<main>
+
+<div class="card">
+
+<h2>Pizzateig berechnen</h2>
+
+<label>Anzahl Pizzen</label>
+<input type="number" id="anzahl" value="4">
+
+<label>Gewicht pro Pizza (g)</label>
+<input type="number" id="gewicht" value="280">
+
+<label>Hydration</label>
+<input type="range" id="hydro" min="55" max="80" value="65">
+<span id="hydroValue">65%</span>
+
+<label>Salz (%)</label>
+<input type="range" id="salz" min="2" max="4" step="0.1" value="3">
+<span id="salzValue">3%</span>
+
+<label>Hefe</label>
+
+<select id="hefe">
+<option>Frischhefe</option>
+<option>Trockenhefe</option>
+</select>
+
+<button onclick="berechnen()">
+🍕 Berechnen
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>Ergebnis</h2>
+
+<p>🌾 Mehl:
+<b id="mehl">0 g</b></p>
+
+<p>💧 Wasser:
+<b id="wasser">0 g</b></p>
+
+<p>🧂 Salz:
+<b id="salzErgebnis">0 g</b></p>
+
+<p>🍺 Hefe:
+<b id="hefeErgebnis">0 g</b></p>
+
+<p>⚖ Gesamtteig:
+<b id="gesamt">0 g</b></p>
+
+</div>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>
