@@ -12,7 +12,16 @@ function berechnen() {
     const mehl = 668 * faktor;
     const wasser = 436 * faktor;
     const salz = 20 * faktor;
-    const hefe = 2 * faktor;
+    const hefeart = document.getElementById("hefeart").value;
+
+let hefe;
+
+if (hefeart === "frisch") {
+    hefe = 2 * faktor;
+} else {
+    // 2 g Frischhefe ≈ 0,67 g Trockenhefe
+    hefe = 0.67 * faktor;
+}
 
     document.getElementById("mehl").innerHTML =
         mehl.toFixed(0) + " g";
