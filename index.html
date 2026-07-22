@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -8,37 +9,57 @@
 
 <link rel="stylesheet" href="style.css">
 <link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#d62828">
+
 </head>
 
 <body>
 
 <header>
-<h1>🍕 PizzaMaster</h1>
-<p>Der intelligente Pizzateig-Rechner</p>
+    <h1>🍕 PizzaMaster</h1>
+    <p>Der intelligente Pizzateig-Rechner</p>
 </header>
 
 <main>
 
 <div class="card">
 
-<h2>Pizzateig berechnen</h2>
+<h2>Teig berechnen</h2>
 
-<label>Anzahl Pizzen</label>
-<input type="number" id="anzahl" value="4">
+<label for="anzahl">Anzahl Pizzen</label>
+<input
+    type="number"
+    id="anzahl"
+    value="4"
+    min="1"
+    max="30">
 
-<label>Gewicht pro Pizza (g)</label>
-<input type="number" id="gewicht" value="280">
+<label for="gewicht">Gewicht pro Pizza (g)</label>
+<input
+    type="number"
+    id="gewicht"
+    value="280"
+    min="150"
+    max="400">
 
-<label>Hydration (%)</label>
-<input type="number" id="hydro" value="65">
-<label>Hefeart</label>
+<label for="hydro">Hydration (%)</label>
+<input
+    type="number"
+    id="hydro"
+    value="65"
+    min="50"
+    max="85">
+
+<label for="hefeart">Hefeart</label>
 
 <select id="hefeart">
     <option value="frisch">Frischhefe</option>
     <option value="trocken">Trockenhefe</option>
 </select>
+
 <button onclick="berechnen()">
-Berechnen
+🍕 Berechnen
 </button>
 
 </div>
@@ -48,22 +69,22 @@ Berechnen
 <h2>Ergebnis</h2>
 
 <div class="result">
-<span>Mehl</span>
+<span>🌾 Mehl</span>
 <span id="mehl">0 g</span>
 </div>
 
 <div class="result">
-<span>Wasser</span>
-<span id="wasser">0 g</span>
+<span>💧 Wasser</span>
+<span id="wasser">0 ml</span>
 </div>
 
 <div class="result">
-<span>Salz</span>
+<span>🧂 Salz</span>
 <span id="salz">0 g</span>
 </div>
 
 <div class="result">
-<span>Frischhefe</span>
+<span>🍺 Hefe</span>
 <span id="hefe">0 g</span>
 </div>
 
