@@ -33,7 +33,7 @@ if (hefeart === "frisch") {
         salz.toFixed(1) + " g";
 
     document.getElementById("hefe").innerHTML =
-        hefe.toFixed(1) + " g";
+    hefe.toFixed(2) + " g";
 }
 
 window.onload = berechnen;
