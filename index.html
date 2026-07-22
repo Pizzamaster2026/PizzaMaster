@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>PizzaMaster</title>
+<title>🍕 PizzaMaster</title>
 
 <link rel="stylesheet" href="style.css">
 <link rel="manifest" href="manifest.json">
 
-<meta name="theme-color" content="#d62828">
+<meta name="theme-color" content="#2e7d32">
 
 </head>
 
 <body>
 
 <header>
-    <h1>🍕 PizzaMaster</h1>
-    <p>Der intelligente Pizzateig-Rechner</p>
+
+<h1>🍕 PizzaMaster</h1>
+
+<p>Der intelligente Pizzateig-Rechner</p>
+
 </header>
 
 <main>
@@ -27,39 +31,38 @@
 
 <h2>Teig berechnen</h2>
 
-<label for="anzahl">Anzahl Pizzen</label>
+<label for="anzahl">🍕 Anzahl Pizzen</label>
 <input
-    type="number"
-    id="anzahl"
-    value="4"
-    min="1"
-    max="30">
+type="number"
+id="anzahl"
+value="4"
+min="1"
+max="30">
 
-<label for="gewicht">Gewicht pro Pizza (g)</label>
+<label for="gewicht">⚖️ Gewicht pro Pizza (g)</label>
 <input
-    type="number"
-    id="gewicht"
-    value="280"
-    min="150"
-    max="400">
+type="number"
+id="gewicht"
+value="280"
+min="150"
+max="400">
 
-<label for="hydro">Hydration (%)</label>
+<label for="hydro">💧 Hydration (%)</label>
 <input
-    type="number"
-    id="hydro"
-    value="65"
-    min="50"
-    max="85">
+type="number"
+id="hydro"
+value="65"
+min="50"
+max="85">
 
-<label for="hefeart">Hefeart</label>
-
+<label for="hefeart">🍺 Hefeart</label>
 <select id="hefeart">
-    <option value="frisch">Frischhefe</option>
-    <option value="trocken">Trockenhefe</option>
+<option value="frisch">Frischhefe</option>
+<option value="trocken">Trockenhefe</option>
 </select>
 
-<button onclick="berechnen()">
-🍕 Berechnen
+<button id="berechnen">
+Berechnen
 </button>
 
 </div>
@@ -70,22 +73,22 @@
 
 <div class="result">
 <span>🌾 Mehl</span>
-<span id="mehl">0 g</span>
+<span id="mehl">668 g</span>
 </div>
 
 <div class="result">
 <span>💧 Wasser</span>
-<span id="wasser">0 ml</span>
+<span id="wasser">436 ml</span>
 </div>
 
 <div class="result">
 <span>🧂 Salz</span>
-<span id="salz">0 g</span>
+<span id="salz">20 g</span>
 </div>
 
 <div class="result">
-<span>🍺 Hefe</span>
-<span id="hefe">0 g</span>
+<span id="hefeLabel">🍺 Frischhefe</span>
+<span id="hefe">2.00 g</span>
 </div>
 
 </div>
@@ -95,4 +98,5 @@
 <script src="script.js"></script>
 
 </body>
+
 </html>
