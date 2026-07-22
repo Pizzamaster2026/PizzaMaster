@@ -1,50 +1,138 @@
-function berechnen() {
+const BASIS = {
+    pizzen: 4,
+    gewicht: 280,
+    hydration: 65,
+    salz: 3.0,
+    hefe: 2
+};
 
-    // Eingaben
-    const anzahl = Number(document.getElementById("anzahl").value);
-    const gewicht = Number(document.getElementById("gewicht").value);
-    const hydration = Number(document.getElementById("hydro").value);
-    const hefeart = document.getElementById("hefeart").value;
+const pizzen = document.getElementById("pizzen");
+const gewicht = document.getElementById("gewicht");
+const hydration = document.getElementById("hydration");
+const hydroText = document.getElementById("hydroText");
+const salz = document.getElementById("salz");
+const hefeart = document.getElementById("hefeart");
+const gare = document.getElementById("gare");
+const temperatur = document.getElementById("temperatur");
 
-    // Originalrezept
-    const BASIS_MEHL = 668;
-    const BASIS_WASSER = 436;
-    const BASIS_SALZ = 20;
-    const BASIS_HEFE = 2;
-    const BASIS_TEIG = 4 * 280;
+const mehlAusgabe = document.getElementById("mehl");
+const wasserAusgabe = document.getElementById("wasser");
+const salzAusgabe = document.getElementById("salzErgebnis");
+const hefeAusgabe = document.getElementById("hefe");
+const hefeTitel = document.getElementById("hefeTitel");
+const gesamtAusgabe = document.getElementById("gesamt");
+const tipp = document.getElementById("tipp");
 
-    // Gesamtteig
-    const gesamtTeig = anzahl * gewicht;
+function berechne() {
 
-    // Skalierungsfaktor
-    const faktor = gesamtTeig / BASIS_TEIG;
+    hydroText.textContent = hydration.value + " %";
 
-    // Zutaten berechnen
-    const mehl = BASIS_MEHL * faktor;
-    const wasser = mehl * hydration / 100;
-    const salz = BASIS_SALZ * faktor;
+    const zielGewicht =
+        Number(pizzen.value) *
+        Number(gewicht.value);
 
-    let hefe;
+    const hydro =
+        Number(hydration.value) / 100;
 
-    if (hefeart === "frisch") {
-        hefe = BASIS_HEFE * faktor;
+    const salzProzent =
+        Number(salz.value) / 100;
+
+    const mehl =
+        zielGewicht /
+        (1 + hydro + salzProzent);
+
+    const wasser =
+        mehl * hydro;
+
+    const salzGramm =
+        mehl * salzProzent;
+
+    let hefe =
+        BASIS.hefe;
+
+    hefe *= 24 / Number(gare.value);
+
+    if (Number(temperatur.value) > 20) {
+
+        hefe *= 20 / Number(temperatur.value);
+
     } else {
-        // Umrechnung Frischhefe -> Trockenhefe
-        hefe = (BASIS_HEFE / 3) * faktor;
+
+        hefe *= 1 + ((20 - Number(temperatur.value)) * 0.05);
+
     }
 
-    // Ausgabe
-    document.getElementById("mehl").textContent =
+    hefe *= mehl / 668;
+
+    if (hefeart.value === "trocken") {
+
+        hefe /= 3;
+
+        hefeTitel.textContent = "🍺 Trockenhefe";
+
+    } else {
+
+        hefeTitel.textContent = "🍺 Frischhefe";
+
+    }
+
+    const gesamt =
+        mehl +
+        wasser +
+        salzGramm +
+        hefe;
+
+    mehlAusgabe.textContent =
         mehl.toFixed(0) + " g";
 
-    document.getElementById("wasser").textContent =
+    wasserAusgabe.textContent =
         wasser.toFixed(0) + " ml";
 
-    document.getElementById("salz").textContent =
-        salz.toFixed(1) + " g";
+    salzAusgabe.textContent =
+        salzGramm.toFixed(1) + " g";
 
-    document.getElementById("hefe").textContent =
+    hefeAusgabe.textContent =
         hefe.toFixed(2) + " g";
+
+    gesamtAusgabe.textContent =
+        gesamt.toFixed(0) + " g";
+
+    if (hydration.value <= 60) {
+
+        tipp.textContent =
+        "Fester Teig – ideal für Anfänger.";
+
+    }
+
+    else if (hydration.value <= 68) {
+
+        tipp.textContent =
+        "Sehr ausgewogener Teig mit guter Verarbeitung.";
+
+    }
+
+    else if (hydration.value <= 75) {
+
+        tipp.textContent =
+        "Weicher Teig – etwas Erfahrung ist hilfreich.";
+
+    }
+
+    else {
+
+        tipp.textContent =
+        "Sehr hohe Hydration – nur für erfahrene Pizzabäcker.";
+
+    }
+
 }
 
-window.onload = berechnen;
+document.querySelectorAll("input, select").forEach(element => {
+
+    element.addEventListener("input", berechne);
+
+    element.addEventListener("change", berechne);
+
+});
+
+berechne();
