@@ -1,171 +1,122 @@
-/* =======================================
-   PizzaMaster v1.0
-   ======================================= */
-
-:root{
-    --bg:#151515;
-    --card:#232323;
-    --primary:#c62828;
-    --primary-dark:#a81f1f;
-    --accent:#ffd54f;
-    --success:#43a047;
-    --success-dark:#2e7d32;
-    --text:#ffffff;
-    --text-light:#cfcfcf;
-    --border:#3a3a3a;
-    --shadow:0 8px 20px rgba(0,0,0,.35);
-    --radius:16px;
-}
-
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:Arial,Helvetica,sans-serif;
-    min-height:100vh;
+    background:#111;
+    color:#fff;
+    padding:20px;
 }
 
-/* ================= HEADER ================= */
-
 header{
-    background:linear-gradient(180deg,#d32f2f,#b71c1c);
     text-align:center;
-    padding:28px 20px;
-    box-shadow:var(--shadow);
+    margin-bottom:30px;
 }
 
 header h1{
-    font-size:2.2rem;
-    margin-bottom:8px;
+    font-size:42px;
+    color:#FFD54F;
 }
 
 header p{
-    color:var(--accent);
-    font-size:1rem;
-}
-
-/* ================= CONTENT ================= */
-
-main{
-    max-width:700px;
-    margin:25px auto;
-    padding:15px;
+    color:#bbb;
+    margin-top:8px;
+    font-size:18px;
 }
 
 .card{
-    background:var(--card);
-    border-radius:var(--radius);
-    padding:22px;
+    background:#222;
+    border-radius:22px;
+    padding:25px;
+    margin-bottom:25px;
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+}
+
+h2{
+    color:#FFD54F;
     margin-bottom:20px;
-    box-shadow:var(--shadow);
 }
-
-.card h2{
-    color:var(--accent);
-    margin-bottom:18px;
-}
-
-/* ================= FORM ================= */
 
 label{
     display:block;
-    margin-top:16px;
-    margin-bottom:6px;
+    margin-top:18px;
+    margin-bottom:8px;
+    font-size:18px;
     font-weight:bold;
 }
 
 input,
 select{
     width:100%;
-    padding:14px;
+    padding:16px;
     border:none;
-    border-radius:12px;
-    background:#353535;
-    color:white;
-    font-size:16px;
-    outline:none;
+    border-radius:14px;
+    background:#333;
+    color:#fff;
+    font-size:20px;
 }
 
 input:focus,
 select:focus{
-    box-shadow:0 0 0 2px var(--accent);
+    outline:2px solid #43A047;
 }
-
-/* ================= BUTTON ================= */
 
 button{
     width:100%;
-    margin-top:24px;
-    padding:16px;
+    margin-top:25px;
+    padding:18px;
     border:none;
-    border-radius:12px;
-    background:var(--success);
+    border-radius:14px;
+    background:#2E7D32;
     color:white;
-    font-size:18px;
+    font-size:22px;
     font-weight:bold;
     cursor:pointer;
     transition:.25s;
 }
 
 button:hover{
-    background:var(--success-dark);
-    transform:translateY(-2px);
+    background:#388E3C;
 }
-
-/* ================= RESULTS ================= */
 
 .result{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:14px 0;
-    border-bottom:1px solid var(--border);
+    padding:18px 0;
+    border-bottom:1px solid #444;
+    font-size:24px;
 }
 
 .result:last-child{
     border-bottom:none;
 }
 
-.result span{
+.result span:first-child{
+    color:#FFD54F;
     font-weight:bold;
-    color:var(--accent);
 }
 
-/* ================= FOOTER ================= */
-
-footer{
-    text-align:center;
-    padding:25px;
-    color:#999;
+.result span:last-child{
+    font-weight:bold;
+    color:white;
 }
-
-/* ================= MOBILE ================= */
 
 @media(max-width:600px){
 
 header h1{
-    font-size:1.8rem;
+    font-size:34px;
 }
 
-header p{
-    font-size:.95rem;
-}
-
-.card{
-    padding:18px;
+.result{
+    font-size:20px;
 }
 
 button{
-    font-size:17px;
+    font-size:20px;
 }
 
 }
