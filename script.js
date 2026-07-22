@@ -1,19 +1,23 @@
-// ================================
+// ==========================================
 // PizzaMaster V2
-// Berechnungs-Engine
-// ================================
+// Neue Berechnungs-Engine
+// ==========================================
 
-// Referenzrezept
+// ---------- Referenzrezept ----------
+
 const BASIS = {
+
     mehl: 668,
     wasser: 436,
     salz: 20,
     hefe: 2,
-    pizzen: 4,
-    gewicht: 280
+
+    gesamt: 1126
+
 };
 
-// Eingaben
+// ---------- Eingaben ----------
+
 const pizzen = document.getElementById("pizzen");
 const gewicht = document.getElementById("gewicht");
 const hydration = document.getElementById("hydration");
@@ -23,7 +27,8 @@ const hefeart = document.getElementById("hefeart");
 const gare = document.getElementById("gare");
 const temperatur = document.getElementById("temperatur");
 
-// Ausgaben
+// ---------- Ausgaben ----------
+
 const mehlAusgabe = document.getElementById("mehl");
 const wasserAusgabe = document.getElementById("wasser");
 const salzAusgabe = document.getElementById("salzErgebnis");
@@ -32,45 +37,56 @@ const hefeTitel = document.getElementById("hefeTitel");
 const gesamtAusgabe = document.getElementById("gesamt");
 const tipp = document.getElementById("tipp");
 
-function faktor(){
+// ==========================================
+// Skalierungsfaktor
+// ==========================================
 
-    return (
+function faktor() {
 
+    const zielgewicht =
         Number(pizzen.value) *
-        Number(gewicht.value)
+        Number(gewicht.value);
 
-    ) /
-
-    (
-
-        BASIS.pizzen *
-        BASIS.gewicht
-
-    );
+    return zielgewicht / BASIS.gesamt;
 
 }
 
-function berechneMehl(){
+// ==========================================
+// Zutaten
+// ==========================================
+
+function berechneMehl() {
 
     return BASIS.mehl * faktor();
 
 }
 
-function berechneWasser(mehl){
+function berechneWasser() {
 
-    return mehl * (Number(hydration.value)/100);
+    let wasser =
+        BASIS.wasser * faktor();
+
+    wasser *= Number(hydration.value) / 65;
+
+    return wasser;
 
 }
 
-function berechneSalz(mehl){
+function berechneSalz() {
 
-    return mehl * (Number(salz.value)/100);
+    let salzMenge =
+        BASIS.salz * faktor();
+
+    salzMenge *=
+        Number(salz.value) / 3;
+
+    return salzMenge;
 
 }
 
-function gareFaktor(){
+function gareFaktor() {
 
-    switch(Number(gare.value)){
+    switch (Number(gare.value)) {
 
         case 4:
             return 6;
@@ -96,97 +112,118 @@ function gareFaktor(){
     }
 
 }
+// ==========================================
+// Hefe
+// ==========================================
 
-function temperaturFaktor(){
+function temperaturFaktor() {
 
     const temp = Number(temperatur.value);
 
-    if(temp>20){
-
-        return 20/temp;
-
+    if (temp > 20) {
+        return 20 / temp;
     }
 
-    return 1+((20-temp)*0.05);
+    return 1 + ((20 - temp) * 0.05);
 
 }
 
-function berechneHefe(mehl){
+function berechneHefe() {
 
-    let hefe = BASIS.hefe;
-
-    hefe *= faktor();
+    let hefe = BASIS.hefe * faktor();
 
     hefe *= gareFaktor();
-
     hefe *= temperaturFaktor();
 
-    if(hefeart.value==="trocken"){
+    if (hefeart.value === "trocken") {
 
-        hefe /=3;
+        hefe /= 3;
 
     }
 
     return hefe;
 
 }
-function aktualisiereTipps(hydrationWert){
 
-    if(hydrationWert<=60){
+// ==========================================
+// Gesamtteig
+// ==========================================
 
-        tipp.textContent =
-        "🟢 Fester Teig – ideal für Anfänger.";
+function berechneGesamt(mehl, wasser, salz, hefe) {
 
-    }
+    return mehl + wasser + salz + hefe;
 
-    else if(hydrationWert<=65){
+}
 
-        tipp.textContent =
-        "🟢 Klassischer Pizzateig – leicht zu verarbeiten.";
+// ==========================================
+// Tipps
+// ==========================================
 
-    }
+function aktualisiereTipp() {
 
-    else if(hydrationWert<=70){
+    const h = Number(hydration.value);
 
-        tipp.textContent =
-        "🟡 Weicher Teig – benötigt etwas Übung.";
+    if (h <= 60) {
 
-    }
-
-    else if(hydrationWert<=75){
-
-        tipp.textContent =
-        "🟠 Sehr weicher Teig – für erfahrene Pizzabäcker.";
+        tipp.innerHTML =
+        "🟢 Fester Teig – perfekt für Einsteiger.";
 
     }
 
-    else{
+    else if (h <= 65) {
 
-        tipp.textContent =
+        tipp.innerHTML =
+        "🟢 Klassischer Pizzateig – sehr gut zu verarbeiten.";
+
+    }
+
+    else if (h <= 70) {
+
+        tipp.innerHTML =
+        "🟡 Weicher Teig – etwas Erfahrung empfohlen.";
+
+    }
+
+    else if (h <= 75) {
+
+        tipp.innerHTML =
+        "🟠 Sehr weicher Teig – ideal für luftige Pizza.";
+
+    }
+
+    else {
+
+        tipp.innerHTML =
         "🔴 Extrem hohe Hydration – nur für Profis.";
 
     }
 
 }
 
-function berechnen(){
+// ==========================================
+// Berechnung
+// ==========================================
+
+function berechnen() {
 
     hydroText.textContent =
-    hydration.value + " %";
+        hydration.value + " %";
 
     const mehl = berechneMehl();
 
-    const wasser = berechneWasser(mehl);
+    const wasser = berechneWasser();
 
-    const salzMenge = berechneSalz(mehl);
+    const salz = berechneSalz();
 
-    const hefe = berechneHefe(mehl);
+    const hefe = berechneHefe();
 
     const gesamt =
-        mehl +
-        wasser +
-        salzMenge +
-        hefe;
+        berechneGesamt(
+            mehl,
+            wasser,
+            salz,
+            hefe
+        );
 
     mehlAusgabe.textContent =
         mehl.toFixed(0) + " g";
@@ -195,7 +232,7 @@ function berechnen(){
         wasser.toFixed(0) + " g";
 
     salzAusgabe.textContent =
-        salzMenge.toFixed(1) + " g";
+        salz.toFixed(1) + " g";
 
     hefeAusgabe.textContent =
         hefe.toFixed(2) + " g";
@@ -203,38 +240,81 @@ function berechnen(){
     gesamtAusgabe.textContent =
         gesamt.toFixed(0) + " g";
 
-    if(hefeart.value==="trocken"){
+    if (hefeart.value === "trocken") {
 
         hefeTitel.textContent =
-        "🍺 Trockenhefe";
+            "🍺 Trockenhefe";
+
+    } else {
+
+        hefeTitel.textContent =
+            "🍺 Frischhefe";
 
     }
 
-    else{
+    aktualisiereTipp();
 
-        hefeTitel.textContent =
-        "🍺 Frischhefe";
+        }
+// ==========================================
+// Originalrezept erkennen
+// ==========================================
 
-    }
+function istOriginalRezept() {
 
-    aktualisiereTipps(Number(hydration.value));
+    return (
+        Number(pizzen.value) === 4 &&
+        Number(gewicht.value) === 280 &&
+        Number(hydration.value) === 65 &&
+        Number(salz.value) === 3 &&
+        Number(gare.value) === 24 &&
+        Number(temperatur.value) === 20 &&
+        hefeart.value === "frisch"
+    );
 
 }
 
+// ==========================================
+// Live aktualisieren
+// ==========================================
+
+function aktualisieren() {
+
+    berechnen();
+
+    if (istOriginalRezept()) {
+
+        mehlAusgabe.textContent = "668 g";
+        wasserAusgabe.textContent = "436 g";
+        salzAusgabe.textContent = "20 g";
+        hefeAusgabe.textContent = "2.00 g";
+        gesamtAusgabe.textContent = "1126 g";
+
+    }
+
+}
+
+// ==========================================
+// Event Listener
+// ==========================================
+
 document
-.querySelectorAll("input,select")
-.forEach(element=>{
+.querySelectorAll("input, select")
+.forEach(element => {
 
     element.addEventListener(
         "input",
-        berechnen
+        aktualisieren
     );
 
     element.addEventListener(
         "change",
-        berechnen
+        aktualisieren
     );
 
 });
 
-berechnen();
+// ==========================================
+// Start
+// ==========================================
+
+aktualisieren();
