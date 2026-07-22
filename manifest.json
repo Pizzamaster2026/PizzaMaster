@@ -1,0 +1,8 @@
+{
+  "name": "PizzaMaster",
+  "short_name": "PizzaMaster",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#151515",
+  "theme_color": "#c62828"
+}
