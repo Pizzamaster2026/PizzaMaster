@@ -318,3 +318,109 @@ document
 // ==========================================
 
 aktualisieren();
+// ==========================================
+// 💾 Rezeptspeicherung
+// ==========================================
+
+const rezeptName = document.getElementById("rezeptName");
+const rezeptListe = document.getElementById("rezeptListe");
+
+const speichernBtn = document.getElementById("speichernBtn");
+const ladenBtn = document.getElementById("ladenBtn");
+const loeschenBtn = document.getElementById("loeschenBtn");
+
+function ladeRezeptListe() {
+
+    rezeptListe.innerHTML =
+        '<option value="">Rezept auswählen</option>';
+
+    const rezepte =
+        JSON.parse(localStorage.getItem("pizzaRezepte")) || {};
+
+    Object.keys(rezepte).forEach(name => {
+
+        const option = document.createElement("option");
+        option.value = name;
+        option.textContent = name;
+
+        rezeptListe.appendChild(option);
+
+    });
+
+}
+
+speichernBtn.addEventListener("click", () => {
+
+    if (rezeptName.value.trim() === "") {
+
+        alert("Bitte einen Namen eingeben.");
+        return;
+
+    }
+
+    const rezepte =
+        JSON.parse(localStorage.getItem("pizzaRezepte")) || {};
+
+    rezepte[rezeptName.value] = {
+
+        pizzen: pizzen.value,
+        gewicht: gewicht.value,
+        hydration: hydration.value,
+        salz: salz.value,
+        gare: gare.value,
+        temperatur: temperatur.value,
+        hefeart: hefeart.value
+
+    };
+
+    localStorage.setItem(
+        "pizzaRezepte",
+        JSON.stringify(rezepte)
+    );
+
+    ladeRezeptListe();
+
+    alert("✅ Rezept gespeichert.");
+
+});
+
+ladenBtn.addEventListener("click", () => {
+
+    if (!rezeptListe.value) return;
+
+    const rezepte =
+        JSON.parse(localStorage.getItem("pizzaRezepte"));
+
+    const r = rezepte[rezeptListe.value];
+
+    pizzen.value = r.pizzen;
+    gewicht.value = r.gewicht;
+    hydration.value = r.hydration;
+    salz.value = r.salz;
+    gare.value = r.gare;
+    temperatur.value = r.temperatur;
+    hefeart.value = r.hefeart;
+
+    aktualisieren();
+
+});
+
+loeschenBtn.addEventListener("click", () => {
+
+    if (!rezeptListe.value) return;
+
+    const rezepte =
+        JSON.parse(localStorage.getItem("pizzaRezepte"));
+
+    delete rezepte[rezeptListe.value];
+
+    localStorage.setItem(
+        "pizzaRezepte",
+        JSON.stringify(rezepte)
+    );
+
+    ladeRezeptListe();
+
+});
+
+ladeRezeptListe();
