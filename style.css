@@ -8,144 +8,78 @@ body{
     font-family:Arial,Helvetica,sans-serif;
     background:#121212;
     color:#ffffff;
-    padding:20px;
+    padding:12px;
 }
 
-.app{
-    max-width:520px;
+.container{
+    max-width:480px;
     margin:auto;
 }
 
-header{
+h1{
     text-align:center;
-    margin-bottom:25px;
-}
-
-header h1{
-    font-size:34px;
-    margin-bottom:8px;
-}
-
-header p{
-    color:#bdbdbd;
-}
-
-.karte{
-    background:#1e1e1e;
-    border-radius:18px;
-    padding:20px;
-    margin-bottom:20px;
-    box-shadow:0 8px 20px rgba(0,0,0,.35);
-}
-
-.karte h2{
-    margin-bottom:20px;
+    font-size:28px;
+    margin-bottom:15px;
     color:#ff9800;
+}
+
+.box{
+    background:#1f1f1f;
+    border-radius:14px;
+    padding:15px;
+    margin-bottom:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,.35);
+}
+
+.box h2{
+    font-size:18px;
+    color:#ff9800;
+    margin-bottom:15px;
 }
 
 label{
     display:block;
-    margin-top:18px;
-    margin-bottom:8px;
+    margin:10px 0 5px;
     font-weight:bold;
 }
 
 input,
 select{
     width:100%;
-    padding:14px;
+    padding:12px;
     border:none;
-    border-radius:12px;
+    border-radius:10px;
     background:#2b2b2b;
-    color:white;
-    font-size:17px;
-    outline:none;
-}
-
-input:focus,
-select:focus{
-    box-shadow:0 0 0 2px #ff9800;
+    color:#fff;
+    font-size:16px;
 }
 
 input[type=range]{
     padding:0;
-    margin-top:12px;
 }
 
 #hydroText{
     float:right;
     color:#ff9800;
+    font-weight:bold;
 }
 
-.zeile{
+.row{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:15px 0;
+    padding:10px 0;
     border-bottom:1px solid #333;
-    font-size:18px;
 }
 
-.zeile:last-child{
+.row:last-child{
     border-bottom:none;
 }
 
-.zeile strong{
+.row strong{
     color:#4caf50;
-    font-size:20px;
-}
-
-#tipp{
-    line-height:1.6;
-    color:#dddddd;
-}
-
-footer{
-    text-align:center;
-    color:#888;
-    margin-top:25px;
-    margin-bottom:20px;
-}
-
-button{
-    width:100%;
-    margin-top:20px;
-    padding:15px;
-    border:none;
-    border-radius:14px;
-    background:#ff9800;
-    color:#fff;
     font-size:18px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:.2s;
 }
 
-button:hover{
-    transform:scale(1.02);
-}
-
-@media(max-width:600px){
-
-body{
-    padding:12px;
-}
-
-header h1{
-    font-size:30px;
-}
-
-.karte{
-    padding:16px;
-}
-
-input,
-select{
-    font-size:16px;
-}
-
-.zeile{
-    font-size:16px;
-}
-
-}
+.total strong{
+    color:#ff980
