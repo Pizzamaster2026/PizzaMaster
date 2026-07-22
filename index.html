@@ -2,101 +2,92 @@
 <html lang="de">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍕 PizzaMaster</title>
 
-<title>🍕 PizzaMaster</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
 
-<link rel="stylesheet" href="style.css">
-<link rel="manifest" href="manifest.json">
-
-<meta name="theme-color" content="#2e7d32">
-
+    <meta name="theme-color" content="#d32f2f">
 </head>
 
 <body>
 
-<header>
-
-<h1>🍕 PizzaMaster</h1>
-
-<p>Der intelligente Pizzateig-Rechner</p>
-
+<header class="header">
+    <h1>🍕 PizzaMaster</h1>
+    <p>Der intelligente Pizzateig-Rechner</p>
 </header>
 
-<main>
+<main class="container">
 
-<div class="card">
+    <section class="card">
 
-<h2>Teig berechnen</h2>
+        <h2>Einstellungen</h2>
 
-<label for="anzahl">🍕 Anzahl Pizzen</label>
-<input
-type="number"
-id="anzahl"
-value="4"
-min="1"
-max="30">
+        <label for="anzahl">🍕 Anzahl Pizzen</label>
+        <input type="number" id="anzahl" value="4" min="1" max="30">
 
-<label for="gewicht">⚖️ Gewicht pro Pizza (g)</label>
-<input
-type="number"
-id="gewicht"
-value="280"
-min="150"
-max="400">
+        <label for="gewicht">⚖️ Gewicht pro Pizza (g)</label>
+        <input type="number" id="gewicht" value="280" min="150" max="400">
 
-<label for="hydro">💧 Hydration (%)</label>
-<input
-type="number"
-id="hydro"
-value="65"
-min="50"
-max="85">
+        <label for="hydro">💧 Hydration</label>
+        <input type="range" id="hydro" min="50" max="85" value="65">
+        <div class="value" id="hydroAnzeige">65 %</div>
 
-<label for="hefeart">🍺 Hefeart</label>
-<select id="hefeart">
-<option value="frisch">Frischhefe</option>
-<option value="trocken">Trockenhefe</option>
-</select>
+        <label for="gare">⏱️ Gare</label>
+        <select id="gare">
+            <option value="4">4 Stunden</option>
+            <option value="8">8 Stunden</option>
+            <option value="12">12 Stunden</option>
+            <option value="24" selected>24 Stunden</option>
+            <option value="48">48 Stunden</option>
+            <option value="72">72 Stunden</option>
+            <option value="96">96 Stunden</option>
+        </select>
 
-<button id="berechnen">
-Berechnen
-</button>
+        <label for="hefeart">🍺 Hefeart</label>
+        <select id="hefeart">
+            <option value="frisch">Frischhefe</option>
+            <option value="trocken">Trockenhefe</option>
+        </select>
 
-</div>
+        <button id="berechnen" onclick="berechnen()">
+            🍕 Berechnen
+        </button>
 
-<div class="card">
+    </section>
 
-<h2>Ergebnis</h2>
+    <section class="card">
 
-<div class="result">
-<span>🌾 Mehl</span>
-<span id="mehl">668 g</span>
-</div>
+        <h2>Ergebnis</h2>
 
-<div class="result">
-<span>💧 Wasser</span>
-<span id="wasser">436 ml</span>
-</div>
+        <div class="result">
+            <span>🌾 Mehl</span>
+            <strong id="mehl">668 g</strong>
+        </div>
 
-<div class="result">
-<span>🧂 Salz</span>
-<span id="salz">20 g</span>
-</div>
+        <div class="result">
+            <span>💧 Wasser</span>
+            <strong id="wasser">436 ml</strong>
+        </div>
 
-<div class="result">
-<span id="hefeLabel">🍺 Frischhefe</span>
-<span id="hefe">2.00 g</span>
-</div>
+        <div class="result">
+            <span>🧂 Salz</span>
+            <strong id="salz">20 g</strong>
+        </div>
 
-</div>
+        <div class="result">
+            <span id="hefeLabel">🍺 Frischhefe</span>
+            <strong id="hefe">2.00 g</strong>
+        </div>
+
+    </section>
 
 </main>
 
 <script src="script.js"></script>
 
 </body>
-
 </html>
